@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mr. Majos | Elite Automotive Lifestyle</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #0a0a0a;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+        }
+        h1, h2, h3, .brand-font {
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+        }
+        .hero-gradient {
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3), #0a0a0a);
+        }
+        .accent-red { color: #e63946; }
+        .bg-accent-red { background-color: #e63946; }
+
+        .card-hover:hover {
+            transform: translateY(-5px);
+            border-color: #e63946;
+            transition: all 0.3s ease;
+        }
+
+        /* Efecto de cristal para el navbar */
+        .glass-nav {
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .car-grid img {
+            filter: grayscale(40%) contrast(110%);
+            transition: filter 0.5s ease;
+        }
+        .car-grid img:hover {
+            filter: grayscale(0%) contrast(100%);
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="fixed w-full z-50 glass-nav px-6 py-4 flex justify-between items-center">
+        <div class="text-2xl font-black tracking-tighter brand-font">MR. <span class="accent-red">MAJOS</span></div>
+        <div class="hidden md:flex space-x-8 text-sm font-semibold tracking-widest">
+            <a href="#inicio" class="hover:text-red-500 transition">INICIO</a>
+            <a href="#sobre-mi" class="hover:text-red-500 transition">EL PILOTO</a>
+            <a href="#galeria" class="hover:text-red-500 transition">GARAJE</a>
+            <a href="#contacto" class="px-4 py-2 bg-white text-black hover:bg-red-600 hover:text-white transition">CONTACTO</a>
+        </div>
+    </nav>
+
+    <section id="inicio" class="relative h-screen flex items-center justify-center overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?auto=format&fit=crop&q=80&w=2070" class="absolute w-full h-full object-cover" alt="Supercar">
+        <div class="absolute inset-0 hero-gradient"></div>
+
+        <div class="relative z-10 text-center px-4">
+            <h1 class="text-5xl md:text-8xl font-black mb-4 animate-tight">MÁS QUE <span class="accent-red">MOTORES</span></h1>
+            <p class="text-lg md:text-xl font-light max-w-2xl mx-auto mb-8 text-gray-300">
+                Explorando el límite del diseño, la velocidad y la exclusividad. Bienvenido al universo de Mr. Majos.
+            </p>
+            <a href="#galeria" class="inline-block bg-accent-red text-white px-10 py-4 font-bold tracking-widest hover:bg-white hover:text-black transition duration-300">
+                EXPLORAR GARAJE
+            </a>
+        </div>
+    </section>
+
+    <div class="bg-white text-black py-6">
+        <div class="container mx-auto px-6 flex flex-wrap justify-around items-center text-center">
+            <div class="p-4">
+                <div class="text-3xl font-black brand-font">+100K</div>
+                <div class="text-xs font-bold tracking-widest text-gray-500">SEGUIDORES</div>
+            </div>
+            <div class="p-4 border-l border-gray-200">
+                <div class="text-3xl font-black brand-font">+50</div>
+                <div class="text-xs font-bold tracking-widest text-gray-500">MARCAS COLABORADORAS</div>
+            </div>
+            <div class="p-4 border-l border-gray-200">
+                <div class="text-3xl font-black brand-font">5M</div>
+                <div class="text-xs font-bold tracking-widest text-gray-500">IMPRESIONES MES</div>
+            </div>
+        </div>
+    </div>
+
+    <section id="sobre-mi" class="py-24 container mx-auto px-6">
+        <div class="flex flex-col md:flex-row items-center gap-12">
+            <div class="md:w-1/2">
+                <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&q=80&w=1000" alt="Mr Majos Portrait" class="rounded-sm shadow-2xl grayscale hover:grayscale-0 transition duration-700">
+            </div>
+            <div class="md:w-1/2">
+                <h2 class="text-4xl font-black mb-6">EL <span class="accent-red">PILOTO</span> ATRÁS DE LA MARCA</h2>
+                <p class="text-gray-400 leading-relaxed mb-6 text-lg">
+                    No solo pruebo autos, cuento la historia detrás de la ingeniería. Mi misión es conectar la emoción del asfalto con una audiencia sedienta de excelencia y estilo de vida premium.
+                </p>
+                <p class="text-gray-400 leading-relaxed mb-8">
+                    Cada curva, cada rugido del motor y cada detalle estético es una oportunidad para mostrar que conducir no es solo ir de A hacia B, sino cómo te sientes durante el trayecto.
+                </p>
+                <div class="border-l-4 border-red-600 pl-4 italic text-gray-300">
+                    "La vida es demasiado corta para conducir autos aburridos."
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="galeria" class="py-20 bg-[#0f0f0f]">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-black mb-12 text-center tracking-widest">GARAJE VISUAL</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 car-grid">
+                <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=800" class="h-80 w-full object-cover" alt="Car 1">
+                <img src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&q=80&w=800" class="h-80 w-full object-cover" alt="Car 2">
+                <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&q=80&w=800" class="h-80 w-full object-cover" alt="Car 3">
+                <img src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&q=80&w=800" class="h-80 w-full object-cover" alt="Car 4">
+                <img src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b?auto=format&fit=crop&q=80&w=800" class="h-80 w-full object-cover" alt="Car 5">
+                <img src="https://images.unsplash.com/photo-1611821064430-0d40291d0f0b?auto=format&fit=crop&q=80&w=800" class="h-80 w-full object-cover" alt="Car 6">
+            </div>
+        </div>
+    </section>
+
+    <footer id="contacto" class="py-20 border-t border-gray-900 text-center">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-black mb-4 tracking-tighter">¿LISTO PARA EL <span class="accent-red">SIGUIENTE NIVEL?</span></h2>
+            <p class="text-gray-500 mb-8 uppercase tracking-widest text-sm font-bold">Colaboraciones y Prensa</p>
+            <a href="mailto:contacto@mrmajos.com" class="text-2xl md:text-4xl font-light hover:text-red-500 transition border-b border-gray-800 pb-2">
+                CONTACTO@MRMAJOS.COM
+            </a>
+
+            <div class="flex justify-center space-x-6 mt-12">
+                <a href="#" class="text-gray-400 hover:text-white transition">INSTAGRAM</a>
+                <a href="#" class="text-gray-400 hover:text-white transition">YOUTUBE</a>
+                <a href="#" class="text-gray-400 hover:text-white transition">TIKTOK</a>
+            </div>
+
+            <p class="mt-16 text-xs text-gray-700 uppercase tracking-[0.3em]">
+                &copy; 2024 MR. MAJOS. ALL RIGHTS RESERVED. DESIGNED FOR SPEED.
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>
