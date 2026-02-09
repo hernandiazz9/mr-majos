@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mr. Majo's — Burger Restaurant Alicante</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Permanent+Marker&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --yellow: #FFD600;
+    --yellow-dark: #E6C200;
+    --black: #0A0A0A;
+    --dark: #111111;
+    --dark-card: #1A1A1A;
+    --gray: #888;
+    --white: #F5F5F0;
+    --red: #FF3B30;
+    --neon-pink: #FF2D78;
+    --neon-purple: #A855F7;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Space Mono', monospace;
+    overflow-x: hidden;
+    cursor: crosshair;
+  }
+
+  ::selection {
+    background: var(--yellow);
+    color: var(--black);
+  }
+
+  /* GRAIN OVERLAY */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  /* DRIP SVG (reusable) */
+  .drip-divider {
+    width: 100%;
+    display: block;
+    margin-top: -2px;
+  }
+
+  /* ======== NAV ======== */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 2px solid var(--yellow);
+    transition: transform 0.3s;
+  }
+
+  .nav-logo {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 1.6rem;
+    color: var(--yellow);
+    text-decoration: none;
+    letter-spacing: 2px;
+  }
+
+  .nav-logo span {
+    color: var(--white);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    position: relative;
+    padding-bottom: 4px;
+    transition: color 0.3s;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--yellow);
+    transition: width 0.3s;
+  }
+
+  .nav-links a:hover { color: var(--yellow); }
+  .nav-links a:hover::after { width: 100%; }
+
+  .nav-cta {
+    background: var(--yellow) !important;
+    color: var(--black) !important;
+    padding: 0.5rem 1.2rem;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1rem !important;
+    letter-spacing: 3px !important;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .nav-cta:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(255,214,0,0.4);
+  }
+
+  .nav-cta::after { display: none !important; }
+
+  /* ======== HERO ======== */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    background:
+      radial-gradient(ellipse at 20% 50%, rgba(255,214,0,0.06) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 30%, rgba(168,85,247,0.04) 0%, transparent 50%),
+      var(--black);
+  }
+
+  .hero-bg-text {
+    position: absolute;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(15rem, 25vw, 30rem);
+    color: rgba(255,214,0,0.03);
+    letter-spacing: -0.02em;
+    user-select: none;
+    white-space: nowrap;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .hero-content {
+    text-align: center;
+    z-index: 2;
+    padding: 2rem;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    border: 1px solid var(--yellow);
+    color: var(--yellow);
+    font-size: 0.65rem;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    padding: 0.5rem 1.5rem;
+    margin-bottom: 2rem;
+    animation: fadeInDown 0.8s ease-out;
+  }
+
+  .hero h1 {
+    font-family: 'Permanent Marker', cursive;
+    font-size: clamp(3.5rem, 10vw, 9rem);
+    line-height: 0.9;
+    color: var(--yellow);
+    text-shadow: 4px 4px 0 var(--black), 6px 6px 0 rgba(255,214,0,0.15);
+    animation: fadeInUp 0.8s ease-out 0.2s both;
+  }
+
+  .hero h1 .outline {
+    -webkit-text-stroke: 2px var(--yellow);
+    color: transparent;
+  }
+
+  .hero-sub {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(1.2rem, 3vw, 2rem);
+    letter-spacing: 8px;
+    color: var(--gray);
+    margin-top: 1rem;
+    animation: fadeInUp 0.8s ease-out 0.4s both;
+  }
+
+  .hero-tagline {
+    font-size: 0.85rem;
+    color: var(--gray);
+    max-width: 500px;
+    margin: 2rem auto;
+    line-height: 1.8;
+    animation: fadeInUp 0.8s ease-out 0.6s both;
+  }
+
+  .hero-cta-group {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2.5rem;
+    animation: fadeInUp 0.8s ease-out 0.8s both;
+  }
+
+  .btn-primary {
+    background: var(--yellow);
+    color: var(--black);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.3rem;
+    letter-spacing: 4px;
+    padding: 1rem 3rem;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.3s;
+    text-decoration: none;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(255,214,0,0.3);
+  }
+
+  .btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s;
+  }
+
+  .btn-primary:hover::before { left: 100%; }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--white);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.3rem;
+    letter-spacing: 4px;
+    padding: 1rem 3rem;
+    border: 2px solid var(--white);
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+  }
+
+  .btn-outline:hover {
+    border-color: var(--yellow);
+    color: var(--yellow);
+  }
+
+  .scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    animation: bounce 2s infinite;
+  }
+
+  .scroll-indicator span {
+    font-size: 0.55rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gray);
+  }
+
+  .scroll-indicator .arrow {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--yellow), transparent);
+  }
+
+  /* ======== MARQUEE ======== */
+  .marquee-section {
+    background: var(--yellow);
+    padding: 1rem 0;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .marquee-track {
+    display: flex;
+    animation: marquee 20s linear infinite;
+    white-space: nowrap;
+  }
+
+  .marquee-item {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 4px;
+    color: var(--black);
+    padding: 0 2rem;
+    flex-shrink: 0;
+  }
+
+  .marquee-item .dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: var(--black);
+    border-radius: 50%;
+    margin: 0 1rem;
+    vertical-align: middle;
+  }
+
+  /* ======== ABOUT ======== */
+  .about {
+    padding: 8rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .about-left .section-label {
+    font-size: 0.65rem;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: var(--yellow);
+    margin-bottom: 1.5rem;
+  }
+
+  .about-left h2 {
+    font-family: 'Permanent Marker', cursive;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    line-height: 1.1;
+    margin-bottom: 2rem;
+  }
+
+  .about-left h2 .yellow { color: var(--yellow); }
+
+  .about-left p {
+    color: var(--gray);
+    line-height: 1.9;
+    font-size: 0.85rem;
+  }
+
+  .about-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 3rem;
+  }
+
+  .stat {
+    text-align: center;
+    padding: 1.5rem;
+    border: 1px solid #222;
+    position: relative;
+  }
+
+  .stat::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 30px;
+    height: 2px;
+    background: var(--yellow);
+  }
+
+  .stat-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.5rem;
+    color: var(--yellow);
+  }
+
+  .stat-label {
+    font-size: 0.65rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-top: 0.3rem;
+  }
+
+  .about-right {
+    position: relative;
+  }
+
+  .about-image-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .about-img {
+    aspect-ratio: 1;
+    background: var(--dark-card);
+    position: relative;
+    overflow: hidden;
+    border: 2px solid #222;
+  }
+
+  .about-img:nth-child(2) { transform: translateY(2rem); }
+
+  .about-img .img-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    background: linear-gradient(135deg, #1a1a1a, #111);
+  }
+
+  .about-img::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 2px solid var(--yellow);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .about-img:hover::after { opacity: 1; }
+
+  /* ======== MENU ======== */
+  .menu-section {
+    padding: 8rem 2rem;
+    background:
+      radial-gradient(ellipse at 80% 20%, rgba(255,45,120,0.04) 0%, transparent 50%),
+      var(--dark);
+  }
+
+  .menu-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 5rem;
+  }
+
+  .section-header .section-label {
+    font-size: 0.65rem;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: var(--yellow);
+    margin-bottom: 1rem;
+  }
+
+  .section-header h2 {
+    font-family: 'Permanent Marker', cursive;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    line-height: 1;
+  }
+
+  .menu-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .menu-card {
+    background: var(--black);
+    border: 1px solid #222;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s, border-color 0.3s;
+    cursor: pointer;
+  }
+
+  .menu-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--yellow);
+  }
+
+  .menu-card-img {
+    width: 100%;
+    aspect-ratio: 4/3;
+    background: var(--dark-card);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .menu-card-img::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60%;
+    background: linear-gradient(to top, var(--black), transparent);
+  }
+
+  .menu-card-body {
+    padding: 1.5rem;
+  }
+
+  .menu-card-tag {
+    display: inline-block;
+    font-size: 0.55rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--yellow);
+    border: 1px solid var(--yellow);
+    padding: 0.2rem 0.6rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .menu-card h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 2px;
+    margin-bottom: 0.5rem;
+  }
+
+  .menu-card p {
+    font-size: 0.75rem;
+    color: var(--gray);
+    line-height: 1.7;
+  }
+
+  .menu-card-price {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    color: var(--yellow);
+    margin-top: 1rem;
+    display: flex;
+    align-items: baseline;
+    gap: 0.3rem;
+  }
+
+  .menu-card-price .currency {
+    font-size: 1rem;
+    color: var(--gray);
+  }
+
+  .menu-card .fire-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: var(--red);
+    color: white;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    padding: 0.3rem 0.8rem;
+    z-index: 2;
+  }
+
+  /* ======== PROMO BANNER ======== */
+  .promo-banner {
+    padding: 6rem 2rem;
+    background: var(--yellow);
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+
+  .promo-banner::before {
+    content: 'ILIMITADAS';
+    position: absolute;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(8rem, 18vw, 20rem);
+    color: rgba(0,0,0,0.05);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+  }
+
+  .promo-content {
+    position: relative;
+    z-index: 2;
+  }
+
+  .promo-content h2 {
+    font-family: 'Permanent Marker', cursive;
+    font-size: clamp(2rem, 6vw, 5rem);
+    color: var(--black);
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+
+  .promo-content .promo-sub {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 6px;
+    color: var(--black);
+    opacity: 0.7;
+  }
+
+  .promo-price {
+    font-family: 'Permanent Marker', cursive;
+    font-size: clamp(4rem, 10vw, 8rem);
+    color: var(--black);
+    margin: 1.5rem 0;
+    text-shadow: 3px 3px 0 rgba(0,0,0,0.1);
+  }
+
+  .promo-details {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-top: 2rem;
+  }
+
+  .promo-detail-item {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 3px;
+    color: var(--black);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .promo-detail-item .icon {
+    font-size: 1.5rem;
+  }
+
+  /* ======== EXPERIENCE ======== */
+  .experience {
+    padding: 8rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .exp-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-top: 4rem;
+  }
+
+  .exp-card {
+    background: var(--dark-card);
+    border: 1px solid #222;
+    padding: 2.5rem 1.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s;
+  }
+
+  .exp-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--yellow);
+    transform: scaleX(0);
+    transition: transform 0.3s;
+  }
+
+  .exp-card:hover::before { transform: scaleX(1); }
+
+  .exp-card:hover {
+    border-color: var(--yellow);
+    transform: translateY(-4px);
+  }
+
+  .exp-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .exp-card h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.3rem;
+    letter-spacing: 3px;
+    margin-bottom: 0.8rem;
+  }
+
+  .exp-card p {
+    font-size: 0.7rem;
+    color: var(--gray);
+    line-height: 1.8;
+  }
+
+  /* ======== NEON QUOTE ======== */
+  .neon-section {
+    padding: 8rem 2rem;
+    text-align: center;
+    background:
+      radial-gradient(ellipse at 50% 50%, rgba(168,85,247,0.08) 0%, transparent 60%),
+      var(--dark);
+    position: relative;
+  }
+
+  .neon-quote {
+    font-family: 'Permanent Marker', cursive;
+    font-size: clamp(2rem, 5vw, 4rem);
+    color: var(--neon-pink);
+    text-shadow:
+      0 0 10px rgba(255,45,120,0.5),
+      0 0 40px rgba(255,45,120,0.2),
+      0 0 80px rgba(255,45,120,0.1);
+    line-height: 1.3;
+    max-width: 700px;
+    margin: 0 auto;
+    animation: neonFlicker 4s infinite;
+  }
+
+  .neon-author {
+    font-size: 0.7rem;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-top: 2rem;
+  }
+
+  /* ======== LOCATION ======== */
+  .location-section {
+    padding: 8rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .location-info h2 {
+    font-family: 'Permanent Marker', cursive;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    margin-bottom: 2rem;
+  }
+
+  .location-info h2 .yellow { color: var(--yellow); }
+
+  .location-detail {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #222;
+  }
+
+  .location-detail .ld-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    background: var(--dark-card);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #333;
+  }
+
+  .location-detail .ld-label {
+    font-size: 0.6rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--yellow);
+    margin-bottom: 0.3rem;
+  }
+
+  .location-detail .ld-value {
+    font-size: 0.9rem;
+    color: var(--white);
+    line-height: 1.6;
+  }
+
+  .map-placeholder {
+    aspect-ratio: 1;
+    background: var(--dark-card);
+    border: 2px solid #222;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .map-placeholder::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(0deg, rgba(255,214,0,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,214,0,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  .map-pin {
+    font-size: 4rem;
+    animation: bounce 2s infinite;
+  }
+
+  .map-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem;
+    letter-spacing: 4px;
+    color: var(--gray);
+  }
+
+  /* ======== FOOTER ======== */
+  footer {
+    background: var(--dark);
+    border-top: 2px solid var(--yellow);
+    padding: 4rem 2rem 2rem;
+  }
+
+  .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem;
+  }
+
+  .footer-brand .nav-logo {
+    font-size: 2rem;
+    display: inline-block;
+    margin-bottom: 1rem;
+  }
+
+  .footer-brand p {
+    font-size: 0.75rem;
+    color: var(--gray);
+    line-height: 1.8;
+    max-width: 300px;
+  }
+
+  .footer-col h4 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 4px;
+    color: var(--yellow);
+    margin-bottom: 1.5rem;
+  }
+
+  .footer-col ul {
+    list-style: none;
+  }
+
+  .footer-col li {
+    margin-bottom: 0.8rem;
+  }
+
+  .footer-col a {
+    color: var(--gray);
+    text-decoration: none;
+    font-size: 0.75rem;
+    transition: color 0.2s;
+  }
+
+  .footer-col a:hover { color: var(--yellow); }
+
+  .footer-social {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .social-icon {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    transition: all 0.3s;
+    text-decoration: none;
+  }
+
+  .social-icon:hover {
+    border-color: var(--yellow);
+    background: var(--yellow);
+    transform: translateY(-2px);
+  }
+
+  .footer-bottom {
+    max-width: 1200px;
+    margin: 3rem auto 0;
+    padding-top: 2rem;
+    border-top: 1px solid #222;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-bottom p {
+    font-size: 0.65rem;
+    color: #555;
+    letter-spacing: 2px;
+  }
+
+  /* ======== ANIMATIONS ======== */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-10px); }
+    60% { transform: translateY(-5px); }
+  }
+
+  @keyframes neonFlicker {
+    0%, 100% { opacity: 1; }
+    92% { opacity: 1; }
+    93% { opacity: 0.8; }
+    94% { opacity: 1; }
+    96% { opacity: 0.9; }
+    97% { opacity: 1; }
+  }
+
+  /* Scroll reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ======== RESPONSIVE ======== */
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .about { grid-template-columns: 1fr; }
+    .menu-grid { grid-template-columns: 1fr; }
+    .exp-grid { grid-template-columns: 1fr 1fr; }
+    .location-section { grid-template-columns: 1fr; }
+    .footer-inner { grid-template-columns: 1fr 1fr; }
+    .promo-details { flex-direction: column; align-items: center; gap: 1rem; }
+    .hero-cta-group { flex-direction: column; align-items: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">MR.<span>MAJO'S</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">Nosotros</a></li>
+    <li><a href="#menu">Carta</a></li>
+    <li><a href="#experience">Experiencia</a></li>
+    <li><a href="#location">Ubicación</a></li>
+    <li><a href="#reservar" class="nav-cta">Reservar Mesa</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-text">BURGER</div>
+  <div class="hero-content">
+    <div class="hero-badge">🍔 Alicante · Est. 2020</div>
+    <h1>MR. <span class="outline">MAJO'S</span></h1>
+    <p class="hero-sub">FOOD P*RN & PATATAS ILIMITADAS</p>
+    <p class="hero-tagline">Smash burgers de autor en el corazón de Alicante. Carne 100% premium, pan brioche artesano y salsas que no vas a olvidar.</p>
+    <div class="hero-cta-group">
+      <a href="#reservar" class="btn-primary">RESERVAR MESA</a>
+      <a href="#menu" class="btn-outline">VER CARTA</a>
+    </div>
+  </div>
+  <div class="scroll-indicator">
+    <span>Scroll</span>
+    <div class="arrow"></div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-section">
+  <div class="marquee-track">
+    <span class="marquee-item">SMASH BURGERS <span class="dot"></span></span>
+    <span class="marquee-item">PATATAS ILIMITADAS <span class="dot"></span></span>
+    <span class="marquee-item">2X1 TODOS LOS JUEVES <span class="dot"></span></span>
+    <span class="marquee-item">MENÚ DEL DÍA €13,7 <span class="dot"></span></span>
+    <span class="marquee-item">DELIVERY DISPONIBLE <span class="dot"></span></span>
+    <span class="marquee-item">SMASH BURGERS <span class="dot"></span></span>
+    <span class="marquee-item">PATATAS ILIMITADAS <span class="dot"></span></span>
+    <span class="marquee-item">2X1 TODOS LOS JUEVES <span class="dot"></span></span>
+    <span class="marquee-item">MENÚ DEL DÍA €13,7 <span class="dot"></span></span>
+    <span class="marquee-item">DELIVERY DISPONIBLE <span class="dot"></span></span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about reveal" id="about">
+  <div class="about-left">
+    <div class="section-label">· Nuestra historia ·</div>
+    <h2>4 AÑOS HACIENDO <span class="yellow">BURGERS</span> QUE ENAMORAN</h2>
+    <p>Nacimos en 2020 con una idea simple: hacer la mejor smash burger de Alicante. Sin pretensiones, sin rodeos. Carne de calidad, pan brioche hecho a mano y salsas secretas que solo encontrarás aquí. Lo que empezó como un sueño en la Calle Bazán se convirtió en el lugar donde la gente viene a disfrutar sin filtros.</p>
+    <div class="about-stats">
+      <div class="stat">
+        <div class="stat-number">4+</div>
+        <div class="stat-label">Años</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">15+</div>
+        <div class="stat-label">Burgers</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">∞</div>
+        <div class="stat-label">Patatas</div>
+      </div>
+    </div>
+  </div>
+  <div class="about-right">
+    <div class="about-image-grid">
+      <div class="about-img"><div class="img-placeholder">🍔</div></div>
+      <div class="about-img"><div class="img-placeholder">🔥</div></div>
+      <div class="about-img"><div class="img-placeholder">🧀</div></div>
+      <div class="about-img"><div class="img-placeholder">🍟</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="menu-section" id="menu">
+  <div class="menu-inner">
+    <div class="section-header reveal">
+      <div class="section-label">· La carta ·</div>
+      <h2>NUESTRAS ESTRELLAS</h2>
+    </div>
+    <div class="menu-grid">
+      <div class="menu-card reveal">
+        <div class="fire-badge">🔥 TOP 1</div>
+        <div class="menu-card-img">🍔</div>
+        <div class="menu-card-body">
+          <span class="menu-card-tag">Best seller</span>
+          <h3>ORGASM BURGER</h3>
+          <p>Doble smash patty, cheddar fundido, bacon crujiente, salsa secreta y cebolla caramelizada.</p>
+          <div class="menu-card-price"><span class="currency">€</span>12.90</div>
+        </div>
+      </div>
+      <div class="menu-card reveal">
+        <div class="menu-card-img">🧀</div>
+        <div class="menu-card-body">
+          <span class="menu-card-tag">Fan favorite</span>
+          <h3>DONATELLA</h3>
+          <p>Smash patty con crema de cacahuete, queso cheddar, bacon y mermelada de tomate picante.</p>
+          <div class="menu-card-price"><span class="currency">€</span>11.50</div>
+        </div>
+      </div>
+      <div class="menu-card reveal">
+        <div class="menu-card-img">🥚</div>
+        <div class="menu-card-body">
+          <span class="menu-card-tag">Clásica</span>
+          <h3>MR. CLASSIC</h3>
+          <p>Smash patty, huevo frito, lechuga, tomate, pepinillo y nuestra salsa de la casa.</p>
+          <div class="menu-card-price"><span class="currency">€</span>10.90</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROMO BANNER -->
+<section class="promo-banner reveal">
+  <div class="promo-content">
+    <p class="promo-sub">VIERNES · SÁBADO · DOMINGO</p>
+    <h2>MENÚ DEL DÍA</h2>
+    <div class="promo-price">€13,70</div>
+    <div class="promo-details">
+      <div class="promo-detail-item"><span class="icon">🥤</span> BEBIDA</div>
+      <div class="promo-detail-item"><span class="icon">🍔</span> BURGER</div>
+      <div class="promo-detail-item"><span class="icon">🍟</span> PATATAS</div>
+      <div class="promo-detail-item"><span class="icon">🍰</span> POSTRE</div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="experience" id="experience">
+  <div class="section-header reveal">
+    <div class="section-label">· La experiencia ·</div>
+    <h2>MÁS QUE UNA BURGER</h2>
+  </div>
+  <div class="exp-grid">
+    <div class="exp-card reveal">
+      <div class="exp-icon">🥩</div>
+      <h3>CARNE PREMIUM</h3>
+      <p>Selección diaria de carne fresca. Smash en plancha a alta temperatura para ese sello crujiente perfecto.</p>
+    </div>
+    <div class="exp-card reveal">
+      <div class="exp-icon">🍟</div>
+      <h3>PATATAS SIN LÍMITE</h3>
+      <p>Sí, has leído bien. Repite todas las veces que quieras. Las patatas aquí son infinitas.</p>
+    </div>
+    <div class="exp-card reveal">
+      <div class="exp-icon">🎨</div>
+      <h3>AMBIENTE URBANO</h3>
+      <p>Neones, grafiti, música que mola. Un espacio diseñado para pasarla bien sin pretensiones.</p>
+    </div>
+    <div class="exp-card reveal">
+      <div class="exp-icon">🛵</div>
+      <h3>DELIVERY</h3>
+      <p>¿No puedes venir? Te la llevamos. La misma calidad en tu casa, sin excusas.</p>
+    </div>
+  </div>
+</section>
+
+<!-- NEON QUOTE -->
+<section class="neon-section reveal">
+  <p class="neon-quote">"Te la comerás entera y te encantará"</p>
+  <p class="neon-author">— Mr. Majo's promise —</p>
+</section>
+
+<!-- LOCATION -->
+<section class="location-section reveal" id="location">
+  <div class="location-info">
+    <h2>VEN A <span class="yellow">VISITARNOS</span></h2>
+    <div class="location-detail">
+      <div class="ld-icon">📍</div>
+      <div>
+        <div class="ld-label">Dirección</div>
+        <div class="ld-value">Calle Bazán 45<br>Alicante, Spain 03001</div>
+      </div>
+    </div>
+    <div class="location-detail">
+      <div class="ld-icon">🕐</div>
+      <div>
+        <div class="ld-label">Horario</div>
+        <div class="ld-value">Martes a Domingo<br>13:00 – 16:00 / 20:00 – 23:30</div>
+      </div>
+    </div>
+    <div class="location-detail">
+      <div class="ld-icon">📱</div>
+      <div>
+        <div class="ld-label">Reservas</div>
+        <div class="ld-value">covermanager.com/mr-majos</div>
+      </div>
+    </div>
+    <a href="#" class="btn-primary" id="reservar" style="display: inline-block; margin-top: 1rem;">RESERVAR AHORA</a>
+  </div>
+  <div class="map-placeholder">
+    <div class="map-pin">📍</div>
+    <div class="map-label">CALLE BAZÁN 45, ALICANTE</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="#" class="nav-logo">MR.<span>MAJO'S</span></a>
+      <p>Smash burgers de autor en el centro de Alicante. Food p*rn de verdad, sin filtros y con patatas ilimitadas.</p>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/mr_majos/" class="social-icon" target="_blank">📸</a>
+        <a href="#" class="social-icon">📘</a>
+        <a href="#" class="social-icon">🎵</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>CARTA</h4>
+      <ul>
+        <li><a href="#">Smash Burgers</a></li>
+        <li><a href="#">Entrantes</a></li>
+        <li><a href="#">Postres</a></li>
+        <li><a href="#">Bebidas</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>INFO</h4>
+      <ul>
+        <li><a href="#">Reservas</a></li>
+        <li><a href="#">Delivery</a></li>
+        <li><a href="#">Eventos</a></li>
+        <li><a href="#">Trabaja con nosotros</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>LEGAL</h4>
+      <ul>
+        <li><a href="#">Aviso legal</a></li>
+        <li><a href="#">Privacidad</a></li>
+        <li><a href="#">Cookies</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2024 MR. MAJO'S — ALICANTE, SPAIN</p>
+    <p>HECHO CON 🔥 Y MUCHO QUESO</p>
+  </div>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.15 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
