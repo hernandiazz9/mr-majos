@@ -3,16 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mr. Majo's | Food Porn & Burgers</title>
+    <title>Mr. Majo's | Landing Versions</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/lucide@latest"></script>
-    
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Personalización de fuentes y estilos específicos */
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #0f0f0f; /* Negro casi puro */
+            background-color: #0f0f0f;
             color: #f3f3f3;
         }
         h1, h2, h3, .brand-font {
@@ -20,192 +17,72 @@
             letter-spacing: 1px;
             text-transform: uppercase;
         }
-        .text-accent {
-            color: #FF4500; /* Naranja Fuego Mr. Majos */
+        .text-accent { color: #FF4500; }
+        .bg-accent { background-color: #FF4500; }
+
+        .version-card {
+            transition: all 0.3s ease;
         }
-        .bg-accent {
-            background-color: #FF4500;
+        .version-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(255, 69, 0, 0.15);
+            border-color: #FF4500;
         }
-        .bg-accent:hover {
-            background-color: #ff5e26;
+        .version-card .version-number {
+            transition: all 0.3s ease;
         }
-        .hero-overlay {
-            background: linear-gradient(to bottom, rgba(15,15,15,0.3), rgba(15,15,15,1));
-        }
-        /* Efecto neón suave */
-        .neon-shadow {
-            text-shadow: 0 0 10px rgba(255, 69, 0, 0.5);
+        .version-card:hover .version-number {
+            color: #FF4500;
+            text-shadow: 0 0 20px rgba(255, 69, 0, 0.5);
         }
     </style>
 </head>
-<body class="antialiased selection:bg-orange-500 selection:text-white">
+<body class="antialiased selection:bg-orange-500 selection:text-white min-h-screen flex flex-col">
 
-    <nav class="fixed w-full z-50 bg-black/80 backdrop-blur-md border-b border-zinc-800">
-        <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
-            <div class="text-2xl brand-font text-white tracking-widest">
+    <nav class="w-full bg-black/80 backdrop-blur-md border-b border-zinc-800">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-center">
+            <div class="text-3xl brand-font text-white tracking-widest">
                 MR. <span class="text-accent">MAJO'S</span>
             </div>
-            <a href="#pedir" class="bg-white text-black font-bold py-2 px-5 rounded-full text-sm hover:bg-zinc-200 transition transform hover:scale-105">
-                PEDIR YA 🍔
-            </a>
         </div>
     </nav>
 
-    <header class="relative h-screen flex items-center justify-center overflow-hidden">
-        <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=2599&auto=format&fit=crop" class="absolute w-full h-full object-cover opacity-60" alt="Burger brutal">
-        
-        <div class="hero-overlay absolute w-full h-full inset-0"></div>
-
-        <div class="relative z-10 text-center px-4 max-w-3xl mx-auto mt-16">
-            <span class="inline-block py-1 px-3 border border-orange-500 rounded-full text-orange-400 text-xs font-bold mb-4 tracking-wider uppercase bg-black/50 backdrop-blur">
-                📍 Alicante Street Food
-            </span>
-            <h1 class="text-6xl md:text-8xl leading-tight mb-4 neon-shadow">
-                PONELE <br><span class="text-accent">ACTITUD</span> BB
-            </h1>
-            <p class="text-lg md:text-xl text-gray-300 mb-8 font-light">
-                No somos gourmet, somos <span class="font-bold text-white">Food Porn</span>. Hamburguesas que chorrean, tequeños adictivos y ese toque dulce que te vuelve loco.
-            </p>
-            <div class="flex flex-col md:flex-row gap-4 justify-center">
-                <a href="#" class="bg-accent text-white font-bold py-4 px-8 rounded-full text-lg shadow-lg shadow-orange-900/50 hover:shadow-orange-500/50 transition-all transform hover:-translate-y-1">
-                    VER CARTA COMPLETA
-                </a>
-                <a href="#" class="border border-white text-white font-bold py-4 px-8 rounded-full text-lg hover:bg-white hover:text-black transition-all">
-                    RESERVAR MESA
-                </a>
-            </div>
+    <main class="flex-1 flex flex-col items-center justify-center px-4 py-16">
+        <div class="text-center mb-12">
+            <h1 class="text-4xl md:text-6xl mb-4">LANDING <span class="text-accent">VERSIONS</span></h1>
+            <p class="text-gray-400 text-lg max-w-md mx-auto">Cada versión es una iteración del diseño. Hacé click para ver cada una.</p>
         </div>
-    </header>
 
-    <section class="py-12 bg-zinc-900 border-y border-zinc-800">
-        <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            <div class="p-4">
-                <i data-lucide="flame" class="w-10 h-10 text-accent mx-auto mb-4"></i>
-                <h3 class="text-2xl mb-2">100% CALLEJERO</h3>
-                <p class="text-gray-400 text-sm">Nada de etiquetas finas. Aquí se viene a comer con las manos y a mancharse.</p>
-            </div>
-            <div class="p-4">
-                <i data-lucide="heart" class="w-10 h-10 text-accent mx-auto mb-4"></i>
-                <h3 class="text-2xl mb-2">DULZÓN SEXY</h3>
-                <p class="text-gray-400 text-sm">Nuestras salsas y combinaciones tienen ese toque dulce que nos hace únicos.</p>
-            </div>
-            <div class="p-4">
-                <i data-lucide="bike" class="w-10 h-10 text-accent mx-auto mb-4"></i>
-                <h3 class="text-2xl mb-2">DELIVERY RAPIDÍSIMO</h3>
-                <p class="text-gray-400 text-sm">Del local a tu sofá antes de que se te quite el antojo.</p>
-            </div>
+        <div id="versions-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl w-full">
         </div>
-    </section>
 
-    <section id="menu" class="py-20 bg-black">
-        <div class="max-w-6xl mx-auto px-4">
-            <h2 class="text-4xl md:text-5xl text-center mb-16">LOS HITS DE <span class="text-accent">MR. MAJO</span></h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-zinc-900 rounded-2xl overflow-hidden shadow-lg hover:shadow-orange-900/20 transition group border border-zinc-800">
-                    <div class="h-64 overflow-hidden relative">
-                        <span class="absolute top-4 right-4 bg-accent text-white text-xs font-bold px-3 py-1 rounded-full z-10">TOP VENTA</span>
-                        <img src="https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?q=80&w=2671&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" alt="Burger">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-2xl mb-2">LA MAJO SPECIAL</h3>
-                        <p class="text-gray-400 text-sm mb-4">Doble carne smash, extra de cheddar fundido, bacon crujiente y nuestra salsa secreta "sexy sirope".</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-xl font-bold text-white">12.50€</span>
-                            <button class="bg-white text-black p-2 rounded-full hover:bg-accent hover:text-white transition">
-                                <i data-lucide="plus"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
+        <p class="text-zinc-600 text-sm mt-12">Agregá nuevas versiones en la carpeta <code class="bg-zinc-800 px-2 py-1 rounded text-zinc-400">/versions/</code></p>
+    </main>
 
-                <div class="bg-zinc-900 rounded-2xl overflow-hidden shadow-lg hover:shadow-orange-900/20 transition group border border-zinc-800">
-                    <div class="h-64 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1626202158866-9961f67824e9?q=80&w=2574&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" alt="Tequeños">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-2xl mb-2">TEQUEÑOS NUTELLA</h3>
-                        <p class="text-gray-400 text-sm mb-4">Postre o entrante, tú decides bb. Masa crujiente rellena de pura felicidad chocolateada.</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-xl font-bold text-white">6.90€</span>
-                            <button class="bg-white text-black p-2 rounded-full hover:bg-accent hover:text-white transition">
-                                <i data-lucide="plus"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-zinc-900 rounded-2xl overflow-hidden shadow-lg hover:shadow-orange-900/20 transition group border border-zinc-800">
-                    <div class="h-64 overflow-hidden relative">
-                         <span class="absolute top-4 right-4 bg-yellow-500 text-black text-xs font-bold px-3 py-1 rounded-full z-10">NUEVA</span>
-                        <img src="https://images.unsplash.com/photo-1551782450-a2132b4ba21d?q=80&w=2669&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" alt="Burger">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-2xl mb-2">CHEESE LOVER</h3>
-                        <p class="text-gray-400 text-sm mb-4">Si no te manchas, no cuenta. Baño de cheddar, aros de cebolla y carne jugosa.</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-xl font-bold text-white">11.90€</span>
-                            <button class="bg-white text-black p-2 rounded-full hover:bg-accent hover:text-white transition">
-                                <i data-lucide="plus"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="text-center mt-12">
-                <a href="#" class="inline-flex items-center gap-2 text-accent font-bold hover:text-white transition border-b border-accent pb-1">
-                    VER TODOS LOS PLATOS <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-16 bg-zinc-900">
-        <div class="max-w-6xl mx-auto px-4 text-center">
-            <h2 class="text-3xl mb-8">SÍGUENOS EN <span class="text-accent">@MR_MAJOS</span></h2>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
-                <div class="aspect-square bg-gray-800 rounded-lg overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=2665&auto=format&fit=crop" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition">
-                </div>
-                <div class="aspect-square bg-gray-800 rounded-lg overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=2562&auto=format&fit=crop" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition">
-                </div>
-                <div class="aspect-square bg-gray-800 rounded-lg overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1596662951482-0c4ba74a6df6?q=80&w=2574&auto=format&fit=crop" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition">
-                </div>
-                <div class="aspect-square bg-gray-800 rounded-lg overflow-hidden flex items-center justify-center bg-zinc-800 border border-zinc-700 cursor-pointer hover:bg-zinc-700 transition">
-                    <span class="text-sm font-bold text-gray-400">VER MÁS <br>STORIES</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="bg-black py-10 border-t border-zinc-800">
-        <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6">
-            <div class="text-center md:text-left">
-                <div class="text-2xl brand-font text-white tracking-widest mb-2">
-                    MR. <span class="text-accent">MAJO'S</span>
-                </div>
-                <p class="text-gray-500 text-sm">Alicante, España.<br>© 2024 Todos los derechos de autor (y sabor).</p>
-            </div>
-            
-            <div class="flex gap-4">
-                <a href="#" class="w-10 h-10 rounded-full bg-zinc-800 flex items-center justify-center hover:bg-accent hover:text-white transition">
-                    <i data-lucide="instagram" class="w-5 h-5"></i>
-                </a>
-                <a href="#" class="w-10 h-10 rounded-full bg-zinc-800 flex items-center justify-center hover:bg-accent hover:text-white transition">
-                    <i data-lucide="facebook" class="w-5 h-5"></i>
-                </a>
-                 <a href="#" class="w-10 h-10 rounded-full bg-zinc-800 flex items-center justify-center hover:bg-accent hover:text-white transition">
-                    <i data-lucide="map-pin" class="w-5 h-5"></i>
-                </a>
-            </div>
-        </div>
+    <footer class="py-6 border-t border-zinc-800 text-center">
+        <p class="text-gray-600 text-sm">&copy; 2024 Mr. Majo's &mdash; Alicante, Espana</p>
     </footer>
 
     <script>
-        lucide.createIcons();
+        const versions = [
+            { id: 'v0', label: 'V0', description: 'Landing original - Food Porn & Burgers' },
+        ];
+
+        const grid = document.getElementById('versions-grid');
+
+        versions.forEach((v) => {
+            const card = document.createElement('a');
+            card.href = `versions/${v.id}.html`;
+            card.className = 'version-card block bg-zinc-900 border border-zinc-800 rounded-2xl p-8 text-center cursor-pointer';
+            card.innerHTML = `
+                <div class="version-number text-5xl md:text-6xl brand-font text-white mb-4">${v.label}</div>
+                <p class="text-gray-400 text-sm">${v.description}</p>
+                <div class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-zinc-500 group-hover:text-accent">
+                    Ver landing &rarr;
+                </div>
+            `;
+            grid.appendChild(card);
+        });
     </script>
 </body>
 </html>
