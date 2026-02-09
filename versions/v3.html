@@ -1,0 +1,1407 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mr. Majo's — Street Burgers Alicante</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Oswald:wght@400;700&family=Work+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --orange: #FF4500;
+  --orange-glow: rgba(255, 69, 0, 0.4);
+  --yellow: #FFAA00;
+  --black: #0A0909;
+  --dark-bg: #121111;
+  --card-bg: #1A1818;
+  --white: #FFFEF7;
+  --grey: #A8A5A0;
+  --grey-dark: #4A4845;
+  --green: #00FF41;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: 'Work Sans', sans-serif;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+::selection {
+  background: var(--orange);
+  color: var(--white);
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: overlay;
+}
+
+h1, h2, h3, .display {
+  font-family: 'Archivo Black', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+}
+
+.condensed {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: rgba(10, 9, 9, 0.9);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 69, 0, 0.2);
+}
+
+.nav-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 1.5rem;
+  color: var(--white);
+  text-decoration: none;
+  letter-spacing: 0.05em;
+}
+
+.logo span {
+  color: var(--orange);
+}
+
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+  align-items: center;
+}
+
+.nav-links a {
+  color: var(--grey);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition: color 0.3s;
+  position: relative;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--orange);
+  transition: width 0.3s;
+}
+
+.nav-links a:hover {
+  color: var(--white);
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+.nav-cta {
+  background: var(--orange);
+  color: var(--white) !important;
+  padding: 0.7rem 1.8rem;
+  border-radius: 0;
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.9rem !important;
+  letter-spacing: 0.15em !important;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.nav-cta::after {
+  display: none !important;
+}
+
+.nav-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px var(--orange-glow);
+}
+
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding-top: 80px;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(circle, var(--orange-glow) 0%, transparent 70%);
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 10%;
+  right: 5%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(0, 255, 65, 0.08) 0%, transparent 60%);
+  opacity: 0.5;
+  pointer-events: none;
+  animation: pulseGlow 4s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.1); }
+}
+
+.vinyl-decor {
+  position: absolute;
+  top: 15%;
+  right: 8%;
+  width: 200px;
+  height: 200px;
+  border: 3px solid rgba(255, 69, 0, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: vinyl-spin 20s linear infinite;
+  z-index: 1;
+}
+
+.vinyl-decor::before {
+  content: '';
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background: var(--black);
+  border: 2px solid rgba(255, 69, 0, 0.3);
+  border-radius: 50%;
+}
+
+.vinyl-decor::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: var(--orange);
+  border-radius: 50%;
+  box-shadow: 0 0 20px rgba(255, 69, 0, 0.6);
+}
+
+@keyframes vinyl-spin {
+  to { transform: rotate(360deg); }
+}
+
+.soundwave {
+  position: absolute;
+  bottom: 5%;
+  left: 5%;
+  display: flex;
+  gap: 4px;
+  align-items: flex-end;
+  height: 80px;
+  opacity: 0.15;
+}
+
+.soundwave span {
+  width: 6px;
+  background: var(--green);
+  border-radius: 3px;
+  animation: wave 1.2s ease-in-out infinite;
+}
+
+.soundwave span:nth-child(1) { height: 40px; animation-delay: 0s; }
+.soundwave span:nth-child(2) { height: 70px; animation-delay: 0.1s; }
+.soundwave span:nth-child(3) { height: 50px; animation-delay: 0.2s; }
+.soundwave span:nth-child(4) { height: 80px; animation-delay: 0.3s; }
+.soundwave span:nth-child(5) { height: 35px; animation-delay: 0.4s; }
+.soundwave span:nth-child(6) { height: 60px; animation-delay: 0.5s; }
+.soundwave span:nth-child(7) { height: 45px; animation-delay: 0.6s; }
+
+@keyframes wave {
+  0%, 100% { transform: scaleY(1); }
+  50% { transform: scaleY(0.5); }
+}
+
+.hero-content {
+  text-align: center;
+  z-index: 2;
+  max-width: 1200px;
+  padding: 0 2rem;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--orange);
+  margin-bottom: 2rem;
+  font-weight: 600;
+}
+
+.hero-badge::before,
+.hero-badge::after {
+  content: '';
+  width: 40px;
+  height: 1px;
+  background: var(--orange);
+}
+
+.hero h1 {
+  font-size: clamp(4rem, 12vw, 11rem);
+  line-height: 0.85;
+  margin-bottom: 0.5rem;
+  color: var(--white);
+  text-shadow: 0 0 60px rgba(255, 69, 0, 0.3);
+}
+
+.hero h1 .highlight {
+  color: var(--orange);
+  display: block;
+}
+
+.hero-tagline {
+  font-family: 'Oswald', sans-serif;
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  color: var(--grey);
+  margin-bottom: 1.5rem;
+}
+
+.hero-desc {
+  max-width: 600px;
+  margin: 0 auto 3rem;
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--grey);
+}
+
+.hero-cta-group {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 1.2rem 3rem;
+  font-family: 'Oswald', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary {
+  background: var(--orange);
+  color: var(--white);
+  box-shadow: 0 0 30px rgba(255, 69, 0, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 40px rgba(255, 69, 0, 0.5);
+}
+
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.6s;
+}
+
+.btn-primary:hover::after {
+  transform: translateX(100%);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--white);
+  border: 2px solid var(--grey-dark);
+}
+
+.btn-secondary:hover {
+  border-color: var(--orange);
+  color: var(--orange);
+}
+
+.stats-strip {
+  background: var(--card-bg);
+  border-top: 1px solid rgba(255, 69, 0, 0.2);
+  border-bottom: 1px solid rgba(255, 69, 0, 0.2);
+  padding: 2rem 0;
+}
+
+.stats-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 3rem;
+}
+
+.stat {
+  text-align: center;
+}
+
+.stat-number {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 3.5rem;
+  color: var(--orange);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.stat-label {
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--grey);
+}
+
+.about {
+  padding: 8rem 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 5rem;
+}
+
+.section-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--orange);
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.section-title {
+  font-size: clamp(3rem, 6vw, 5rem);
+  line-height: 1;
+  margin-bottom: 1.5rem;
+}
+
+.section-desc {
+  max-width: 700px;
+  margin: 0 auto;
+  font-size: 1.1rem;
+  color: var(--grey);
+  line-height: 1.8;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.about-card {
+  background: var(--card-bg);
+  padding: 3rem 2rem;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.about-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--orange);
+  transform: scaleX(0);
+  transition: transform 0.3s;
+}
+
+.about-card:hover {
+  border-color: rgba(255, 69, 0, 0.3);
+  transform: translateY(-5px);
+}
+
+.about-card:hover::before {
+  transform: scaleX(1);
+}
+
+.about-icon {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+  display: block;
+}
+
+.about-card h3 {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.3rem;
+  letter-spacing: 0.1em;
+  margin-bottom: 1rem;
+}
+
+.about-card p {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--grey);
+}
+
+.menu {
+  padding: 8rem 2rem;
+  background: var(--dark-bg);
+}
+
+.menu-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2rem;
+}
+
+.menu-item {
+  background: var(--card-bg);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+  transition: all 0.3s;
+  position: relative;
+}
+
+.menu-item:hover {
+  border-color: rgba(255, 69, 0, 0.3);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+}
+
+.menu-image {
+  width: 100%;
+  height: 240px;
+  background: linear-gradient(135deg, #1a1818 0%, #0a0909 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.menu-image::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(to top, var(--card-bg), transparent);
+}
+
+.menu-emoji {
+  font-size: 6rem;
+  filter: drop-shadow(0 10px 30px rgba(255, 69, 0, 0.3));
+}
+
+.menu-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: var(--orange);
+  color: var(--white);
+  padding: 0.4rem 1rem;
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  z-index: 2;
+}
+
+.menu-content {
+  padding: 2rem;
+}
+
+.menu-item h3 {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.5rem;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.8rem;
+}
+
+.menu-desc {
+  font-size: 0.85rem;
+  line-height: 1.7;
+  color: var(--grey);
+  margin-bottom: 1.5rem;
+}
+
+.menu-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.menu-price {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 2rem;
+  color: var(--orange);
+}
+
+.menu-price small {
+  font-size: 0.6em;
+  color: var(--grey);
+  font-family: 'Work Sans', sans-serif;
+}
+
+.menu-heat {
+  font-size: 1.2rem;
+}
+
+.promo {
+  background: linear-gradient(135deg, var(--orange) 0%, #FF6B00 100%);
+  padding: 6rem 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.promo::before {
+  content: 'UNLIMITED';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Archivo Black', sans-serif;
+  font-size: clamp(6rem, 15vw, 18rem);
+  color: rgba(255, 255, 255, 0.05);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.promo-content {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+.promo-content h2 {
+  font-size: clamp(3rem, 8vw, 6rem);
+  color: var(--white);
+  line-height: 0.9;
+  margin-bottom: 1rem;
+}
+
+.promo-desc {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.5rem;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 2rem;
+}
+
+.promo-features {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 3rem;
+}
+
+.promo-feature {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.1em;
+  color: var(--white);
+}
+
+.promo-feature .icon {
+  font-size: 2rem;
+}
+
+.dj-section {
+  padding: 6rem 2rem;
+  background: var(--card-bg);
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+.dj-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--green), transparent);
+}
+
+.dj-section::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--green), transparent);
+}
+
+.dj-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 2rem;
+  font-weight: 600;
+}
+
+.dj-text {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  color: var(--white);
+  line-height: 1.3;
+  max-width: 800px;
+  margin: 0 auto 1.5rem;
+}
+
+.dj-sub {
+  font-size: 1rem;
+  color: var(--grey);
+  font-style: italic;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.location {
+  padding: 8rem 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.location-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.location-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.info-item {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+}
+
+.info-icon {
+  font-size: 2rem;
+  flex-shrink: 0;
+  margin-top: 0.2rem;
+}
+
+.info-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--orange);
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.info-value {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--white);
+}
+
+.info-value a {
+  color: var(--orange);
+  text-decoration: none;
+  transition: opacity 0.3s;
+}
+
+.info-value a:hover {
+  opacity: 0.8;
+}
+
+.location-map {
+  background: var(--card-bg);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.location-map::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 69, 0, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 69, 0, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.map-pin {
+  font-size: 5rem;
+  margin-bottom: 1rem;
+  animation: float 3s ease-in-out infinite;
+  filter: drop-shadow(0 10px 30px rgba(255, 69, 0, 0.4));
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+.map-label {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.2rem;
+  letter-spacing: 0.1em;
+  color: var(--grey);
+  text-align: center;
+}
+
+footer {
+  background: var(--dark-bg);
+  border-top: 1px solid rgba(255, 69, 0, 0.2);
+  padding: 4rem 2rem 2rem;
+}
+
+.footer-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 3rem;
+  margin-bottom: 3rem;
+}
+
+.footer-brand .logo {
+  display: inline-block;
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
+}
+
+.footer-brand p {
+  font-size: 0.9rem;
+  line-height: 1.8;
+  color: var(--grey);
+  max-width: 300px;
+}
+
+.footer-col h4 {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1rem;
+  letter-spacing: 0.1em;
+  margin-bottom: 1.5rem;
+  color: var(--orange);
+}
+
+.footer-col ul {
+  list-style: none;
+}
+
+.footer-col li {
+  margin-bottom: 0.8rem;
+}
+
+.footer-col a {
+  color: var(--grey);
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: color 0.3s;
+}
+
+.footer-col a:hover {
+  color: var(--white);
+}
+
+.footer-social {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.social-link {
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--grey-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 1.2rem;
+  transition: all 0.3s;
+}
+
+.social-link:hover {
+  border-color: var(--orange);
+  background: var(--orange);
+  transform: translateY(-3px);
+}
+
+.footer-bottom {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  text-align: center;
+  color: var(--grey-dark);
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  z-index: 101;
+}
+
+.nav-hamburger span {
+  width: 24px;
+  height: 2px;
+  background: var(--white);
+  transition: all 0.3s;
+}
+
+.nav-hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.nav-hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+@media (max-width: 1024px) {
+  .location-grid,
+  .footer-container {
+    grid-template-columns: 1fr;
+  }
+
+  .nav-links {
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-hamburger {
+    display: flex;
+  }
+
+  .nav-links {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 9, 9, 0.97);
+    backdrop-filter: blur(20px);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    z-index: 100;
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  .nav-links a {
+    font-size: 1.2rem;
+    letter-spacing: 0.15em;
+  }
+
+  .nav-cta {
+    font-size: 1.1rem !important;
+    padding: 0.8rem 2rem;
+  }
+
+  .hero h1 {
+    font-size: 4rem;
+  }
+
+  .vinyl-decor {
+    width: 120px;
+    height: 120px;
+    top: 10%;
+    right: 5%;
+  }
+
+  .soundwave {
+    height: 50px;
+  }
+
+  .stats-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  .about-grid,
+  .menu-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-cta-group {
+    flex-direction: column;
+  }
+
+  .btn {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .promo-features {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .location-map {
+    aspect-ratio: 4/3;
+  }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-container">
+    <a href="#" class="logo">MR.<span>MAJO'S</span></a>
+    <div class="nav-hamburger" onclick="this.classList.toggle('active'); document.querySelector('.nav-links').classList.toggle('open');">
+      <span></span><span></span><span></span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#about" onclick="closeMenu()">Nosotros</a></li>
+      <li><a href="#menu" onclick="closeMenu()">Carta</a></li>
+      <li><a href="#location" onclick="closeMenu()">Ubicación</a></li>
+      <li><a href="#" class="nav-cta" onclick="closeMenu()">RESERVAR</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="vinyl-decor"></div>
+  <div class="soundwave">
+    <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+  </div>
+  <div class="hero-content">
+    <div class="hero-badge">Alicante · Est. 2020</div>
+    <h1>
+      STREET<br>
+      <span class="highlight">BURGERS</span>
+    </h1>
+    <p class="hero-tagline">FOOD P*RN & PATATAS ILIMITADAS</p>
+    <p class="hero-desc">
+      Smash burgers artesanales en el corazón de Alicante. Carne premium,
+      pan brioche recién horneado y salsas que te volarán la cabeza.
+    </p>
+    <div class="hero-cta-group">
+      <a href="#" class="btn btn-primary">RESERVAR MESA</a>
+      <a href="#menu" class="btn btn-secondary">VER CARTA</a>
+    </div>
+  </div>
+</section>
+
+<div class="stats-strip">
+  <div class="stats-container">
+    <div class="stat">
+      <div class="stat-number">4+</div>
+      <div class="stat-label">Años de Pasión</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">7.9K</div>
+      <div class="stat-label">Seguidores</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">4.8</div>
+      <div class="stat-label">Rating</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">∞</div>
+      <div class="stat-label">Patatas</div>
+    </div>
+  </div>
+</div>
+
+<section class="about" id="about">
+  <div class="section-header reveal">
+    <div class="section-label">NUESTRA HISTORIA</div>
+    <h2 class="section-title">HACEMOS BURGERS<br>QUE ENAMORAN</h2>
+    <p class="section-desc">
+      Desde 2020 en Calle Bazán, creando las mejores smash burgers de Alicante.
+      Sin filtros, sin pretensiones. Solo carne de calidad, pan artesano y salsas que no vas a olvidar.
+    </p>
+  </div>
+  <div class="about-grid">
+    <div class="about-card reveal">
+      <span class="about-icon">🥩</span>
+      <h3>CARNE PREMIUM</h3>
+      <p>Selección diaria de carne fresca. Smash en plancha a alta temperatura para ese sello crujiente perfecto.</p>
+    </div>
+    <div class="about-card reveal">
+      <span class="about-icon">🍟</span>
+      <h3>PATATAS ILIMITADAS</h3>
+      <p>Sí, has leído bien. Repite todas las veces que quieras. Las patatas aquí son infinitas.</p>
+    </div>
+    <div class="about-card reveal">
+      <span class="about-icon">🎨</span>
+      <h3>AMBIENTE URBANO</h3>
+      <p>Un espacio diseñado para disfrutar sin pretensiones. Street food con actitud.</p>
+    </div>
+    <div class="about-card reveal">
+      <span class="about-icon">🛵</span>
+      <h3>DELIVERY</h3>
+      <p>¿No puedes venir? Te la llevamos. La misma calidad en tu casa.</p>
+    </div>
+  </div>
+</section>
+
+<section class="menu" id="menu">
+  <div class="menu-container">
+    <div class="section-header reveal">
+      <div class="section-label">LA CARTA</div>
+      <h2 class="section-title">NUESTRAS<br>ESTRELLAS</h2>
+    </div>
+    <div class="menu-grid">
+      <div class="menu-item reveal">
+        <div class="menu-image">
+          <span class="menu-emoji">🍔</span>
+          <span class="menu-badge">🏆 TOP 1</span>
+        </div>
+        <div class="menu-content">
+          <h3>ORGASM BURGER</h3>
+          <p class="menu-desc">Doble smash patty, cheddar fundido, bacon crujiente, salsa secreta y cebolla caramelizada.</p>
+          <div class="menu-footer">
+            <span class="menu-price">€12.90 <small>/ud</small></span>
+            <span class="menu-heat">🔥🔥🔥</span>
+          </div>
+        </div>
+      </div>
+      <div class="menu-item reveal">
+        <div class="menu-image">
+          <span class="menu-emoji">🧀</span>
+          <span class="menu-badge">FAN FAV</span>
+        </div>
+        <div class="menu-content">
+          <h3>DONATELLA</h3>
+          <p class="menu-desc">Smash patty con crema de cacahuete, queso cheddar, bacon y mermelada de tomate picante.</p>
+          <div class="menu-footer">
+            <span class="menu-price">€11.50 <small>/ud</small></span>
+            <span class="menu-heat">🔥🔥</span>
+          </div>
+        </div>
+      </div>
+      <div class="menu-item reveal">
+        <div class="menu-image">
+          <span class="menu-emoji">🥚</span>
+          <span class="menu-badge">CLÁSICA</span>
+        </div>
+        <div class="menu-content">
+          <h3>MR. CLASSIC</h3>
+          <p class="menu-desc">Smash patty, huevo frito, lechuga, tomate, pepinillo y nuestra salsa de la casa.</p>
+          <div class="menu-footer">
+            <span class="menu-price">€10.90 <small>/ud</small></span>
+            <span class="menu-heat">🔥</span>
+          </div>
+        </div>
+      </div>
+      <div class="menu-item reveal">
+        <div class="menu-image">
+          <span class="menu-emoji">🌶️</span>
+          <span class="menu-badge">PICANTE</span>
+        </div>
+        <div class="menu-content">
+          <h3>INFERNO</h3>
+          <p class="menu-desc">Doble smash patty, jalapeños, queso pepper jack, salsa habanero y cebolla crispy.</p>
+          <div class="menu-footer">
+            <span class="menu-price">€12.50 <small>/ud</small></span>
+            <span class="menu-heat">🔥🔥🔥🔥</span>
+          </div>
+        </div>
+      </div>
+      <div class="menu-item reveal">
+        <div class="menu-image">
+          <span class="menu-emoji">🍄</span>
+          <span class="menu-badge">NUEVA</span>
+        </div>
+        <div class="menu-content">
+          <h3>TRUFFLE QUEEN</h3>
+          <p class="menu-desc">Smash patty, crema de trufa, champiñones salteados, queso brie y rúcula.</p>
+          <div class="menu-footer">
+            <span class="menu-price">€13.50 <small>/ud</small></span>
+            <span class="menu-heat">🔥🔥</span>
+          </div>
+        </div>
+      </div>
+      <div class="menu-item reveal">
+        <div class="menu-image">
+          <span class="menu-emoji">🥓</span>
+          <span class="menu-badge">ESPECIAL</span>
+        </div>
+        <div class="menu-content">
+          <h3>BBQ MASTER</h3>
+          <p class="menu-desc">Triple smash patty, bacon ahumado, cebolla crispy, queso cheddar y salsa BBQ casera.</p>
+          <div class="menu-footer">
+            <span class="menu-price">€14.90 <small>/ud</small></span>
+            <span class="menu-heat">🔥🔥🔥</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="promo reveal">
+  <div class="promo-content">
+    <h2>MENÚ DEL DÍA</h2>
+    <p class="promo-desc">VIERNES · SÁBADO · DOMINGO</p>
+    <div style="font-family: 'Archivo Black', sans-serif; font-size: clamp(4rem, 10vw, 8rem); color: white; margin: 1rem 0;">€13,70</div>
+    <div class="promo-features">
+      <div class="promo-feature">
+        <span class="icon">🥤</span>
+        <span>BEBIDA</span>
+      </div>
+      <div class="promo-feature">
+        <span class="icon">🍔</span>
+        <span>BURGER</span>
+      </div>
+      <div class="promo-feature">
+        <span class="icon">🍟</span>
+        <span>PATATAS</span>
+      </div>
+      <div class="promo-feature">
+        <span class="icon">🍰</span>
+        <span>POSTRE</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="dj-section reveal">
+  <div class="dj-label">· MÚSICA · AMBIENTE · VIBRA ·</div>
+  <p class="dj-text">EL DUEÑO ES DJ, ASÍ QUE ESPERÁ LA MEJOR MÚSICA MIENTRAS TE MORFÁS TU BURGER</p>
+  <p class="dj-sub">Good vibes, good food, good times — esa es la receta</p>
+</section>
+
+<section class="location" id="location">
+  <div class="section-header reveal">
+    <div class="section-label">ENCUÉNTRANOS</div>
+    <h2 class="section-title">VEN A<br>VISITARNOS</h2>
+  </div>
+  <div class="location-grid">
+    <div class="location-info">
+      <div class="info-item reveal">
+        <span class="info-icon">📍</span>
+        <div>
+          <div class="info-label">DIRECCIÓN</div>
+          <div class="info-value">Calle Bazán 47<br>Alicante, Spain 03001</div>
+        </div>
+      </div>
+      <div class="info-item reveal">
+        <span class="info-icon">🕐</span>
+        <div>
+          <div class="info-label">HORARIO</div>
+          <div class="info-value">Martes a Domingo<br>13:00 – 16:00 / 20:00 – 23:30</div>
+        </div>
+      </div>
+      <div class="info-item reveal">
+        <span class="info-icon">📱</span>
+        <div>
+          <div class="info-label">RESERVAS</div>
+          <div class="info-value"><a href="#">covermanager.com/mr-majos</a></div>
+        </div>
+      </div>
+      <div class="info-item reveal">
+        <span class="info-icon">📧</span>
+        <div>
+          <div class="info-label">INSTAGRAM</div>
+          <div class="info-value"><a href="https://www.instagram.com/mr_majos/" target="_blank">@mr_majos</a></div>
+        </div>
+      </div>
+      <div class="reveal">
+        <a href="#" class="btn btn-primary" style="margin-top: 1rem; display: inline-block;">RESERVAR AHORA</a>
+      </div>
+    </div>
+    <div class="location-map reveal">
+      <div class="map-pin">📍</div>
+      <div class="map-label">CALLE BAZÁN 47<br>ALICANTE</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-container">
+    <div class="footer-brand">
+      <a href="#" class="logo">MR.<span>MAJO'S</span></a>
+      <p>
+        Street burgers artesanales en Alicante. Food p*rn sin filtros
+        con patatas ilimitadas. Desde 2020 en Calle Bazán.
+      </p>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/mr_majos/" class="social-link" target="_blank">📸</a>
+        <a href="#" class="social-link">🎵</a>
+        <a href="#" class="social-link">🍔</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>CARTA</h4>
+      <ul>
+        <li><a href="#">Smash Burgers</a></li>
+        <li><a href="#">Entrantes</a></li>
+        <li><a href="#">Postres</a></li>
+        <li><a href="#">Bebidas</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>INFORMACIÓN</h4>
+      <ul>
+        <li><a href="#">Reservas</a></li>
+        <li><a href="#">Delivery</a></li>
+        <li><a href="#">Eventos</a></li>
+        <li><a href="#">Trabaja con Nosotros</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>LEGAL</h4>
+      <ul>
+        <li><a href="#">Aviso Legal</a></li>
+        <li><a href="#">Privacidad</a></li>
+        <li><a href="#">Cookies</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © 2025 MR. MAJO'S — ALICANTE, SPAIN · HECHO CON 🔥 Y MUCHO QUESO
+  </div>
+</footer>
+
+<script>
+const observerOptions = {
+  threshold: 0.1,
+  rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, observerOptions);
+
+document.querySelectorAll('.reveal').forEach(el => {
+  observer.observe(el);
+});
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      const offset = 80;
+      const targetPosition = target.offsetTop - offset;
+      window.scrollTo({
+        top: targetPosition,
+        behavior: 'smooth'
+      });
+    }
+  });
+});
+
+function closeMenu() {
+  document.querySelector('.nav-hamburger').classList.remove('active');
+  document.querySelector('.nav-links').classList.remove('open');
+}
+</script>
+
+</body>
+</html>
