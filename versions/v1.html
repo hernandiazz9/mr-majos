@@ -959,16 +959,187 @@
     transform: translateY(0);
   }
 
+  /* ======== HAMBURGER MENU ======== */
+  .nav-hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    z-index: 101;
+    padding: 4px;
+  }
+
+  .nav-hamburger span {
+    width: 24px;
+    height: 2px;
+    background: var(--yellow);
+    transition: all 0.3s;
+  }
+
+  .nav-hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+
+  .nav-hamburger.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .nav-hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
+
   /* ======== RESPONSIVE ======== */
+
+  /* Tablet */
+  @media (max-width: 1024px) {
+    .exp-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-inner { grid-template-columns: 1fr 1fr; gap: 2rem; }
+  }
+
+  /* Mobile */
   @media (max-width: 768px) {
-    .nav-links { display: none; }
-    .about { grid-template-columns: 1fr; }
-    .menu-grid { grid-template-columns: 1fr; }
-    .exp-grid { grid-template-columns: 1fr 1fr; }
-    .location-section { grid-template-columns: 1fr; }
-    .footer-inner { grid-template-columns: 1fr 1fr; }
-    .promo-details { flex-direction: column; align-items: center; gap: 1rem; }
-    .hero-cta-group { flex-direction: column; align-items: center; }
+    .nav-hamburger { display: flex; }
+
+    .nav-links {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(10,10,10,0.97);
+      backdrop-filter: blur(20px);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      z-index: 100;
+    }
+
+    .nav-links.open {
+      display: flex;
+    }
+
+    .nav-links a {
+      font-size: 1.2rem;
+      letter-spacing: 5px;
+    }
+
+    .nav-cta {
+      font-size: 1.3rem !important;
+      padding: 0.8rem 2rem;
+    }
+
+    nav { padding: 0.8rem 1.2rem; }
+
+    .hero { min-height: 100svh; }
+
+    .hero-content { padding: 1.5rem; }
+
+    .hero-badge {
+      font-size: 0.55rem;
+      letter-spacing: 3px;
+      padding: 0.4rem 1rem;
+    }
+
+    .hero-tagline {
+      font-size: 0.78rem;
+      padding: 0 0.5rem;
+    }
+
+    .hero-cta-group {
+      flex-direction: column;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .btn-primary, .btn-outline {
+      width: 100%;
+      max-width: 280px;
+      text-align: center;
+      padding: 0.9rem 2rem;
+      font-size: 1.1rem;
+    }
+
+    .about {
+      grid-template-columns: 1fr;
+      padding: 5rem 1.5rem;
+      gap: 3rem;
+    }
+
+    .about-stats { grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
+
+    .stat { padding: 1rem 0.5rem; }
+
+    .stat-number { font-size: 2rem; }
+
+    .about-img:nth-child(2) { transform: none; }
+
+    .menu-section { padding: 5rem 1.5rem; }
+
+    .menu-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+
+    .section-header { margin-bottom: 3rem; }
+
+    .promo-banner { padding: 4rem 1.5rem; }
+
+    .promo-details {
+      flex-direction: column;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .promo-content .promo-sub {
+      font-size: 1.1rem;
+      letter-spacing: 3px;
+    }
+
+    .experience { padding: 5rem 1.5rem; }
+
+    .exp-grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .exp-card { padding: 2rem 1.5rem; }
+
+    .neon-section { padding: 5rem 1.5rem; }
+
+    .neon-quote { font-size: clamp(1.5rem, 6vw, 2.5rem); }
+
+    .location-section {
+      grid-template-columns: 1fr;
+      padding: 5rem 1.5rem;
+      gap: 2.5rem;
+    }
+
+    .map-placeholder { aspect-ratio: 4/3; }
+
+    footer { padding: 3rem 1.5rem 1.5rem; }
+
+    .footer-inner {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .footer-bottom {
+      flex-direction: column;
+      gap: 0.8rem;
+      text-align: center;
+    }
+
+    .marquee-item {
+      font-size: 1rem;
+      letter-spacing: 2px;
+    }
+  }
+
+  /* Small phones */
+  @media (max-width: 380px) {
+    .hero h1 { font-size: clamp(2.8rem, 14vw, 4rem); }
+    .hero-sub { letter-spacing: 4px; }
+    .about-stats { grid-template-columns: 1fr; }
+    .stat { padding: 1rem; }
   }
 </style>
 </head>
@@ -977,12 +1148,15 @@
 <!-- NAV -->
 <nav>
   <a href="#" class="nav-logo">MR.<span>MAJO'S</span></a>
+  <div class="nav-hamburger" onclick="this.classList.toggle('active'); document.querySelector('.nav-links').classList.toggle('open');">
+    <span></span><span></span><span></span>
+  </div>
   <ul class="nav-links">
-    <li><a href="#about">Nosotros</a></li>
-    <li><a href="#menu">Carta</a></li>
-    <li><a href="#experience">Experiencia</a></li>
-    <li><a href="#location">Ubicación</a></li>
-    <li><a href="#reservar" class="nav-cta">Reservar Mesa</a></li>
+    <li><a href="#about" onclick="closeMenu()">Nosotros</a></li>
+    <li><a href="#menu" onclick="closeMenu()">Carta</a></li>
+    <li><a href="#experience" onclick="closeMenu()">Experiencia</a></li>
+    <li><a href="#location" onclick="closeMenu()">Ubicación</a></li>
+    <li><a href="#reservar" class="nav-cta" onclick="closeMenu()">Reservar Mesa</a></li>
   </ul>
 </nav>
 
@@ -1222,6 +1396,7 @@
 </footer>
 
 <script>
+  // Scroll reveal
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -1231,6 +1406,12 @@
     });
   }, { threshold: 0.15 });
   reveals.forEach(el => observer.observe(el));
+
+  // Mobile menu
+  function closeMenu() {
+    document.querySelector('.nav-hamburger').classList.remove('active');
+    document.querySelector('.nav-links').classList.remove('open');
+  }
 </script>
 
 </body>
